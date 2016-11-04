@@ -12,8 +12,8 @@ class Request
   property :confirmed, Boolean, default: false
 
 
-  def self.confirm
-    self.confirmed = true
+  def confirm
+    self.update(confirmed: true)
   end
 
 end
