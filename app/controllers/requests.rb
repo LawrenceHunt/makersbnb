@@ -29,5 +29,11 @@ class Makersbnb < Sinatra::Base
   	{availableDates: dates}.to_json
   end
 
+  post '/requests/confirm/:id' do
+    request = Request.first(id: params[:id])
+    request.confirm
+    redirect '/requests'
+  end
+
 
 end

@@ -9,16 +9,11 @@ class Request
   property :date_from, Date
   property :date_to, Date
 
-  property :confirmed, Boolean
+  property :confirmed, Boolean, default: false
 
 
-
-
-  def requests_received(user)
-    @requests = []
-    @spaces = Space.all(user_id: user.id)
-    @spaces.each { |space| @requests += Request.all(space_id: space.id) }
-    @requests
+  def self.confirm
+    self.confirmed = true
   end
 
 end

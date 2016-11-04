@@ -8,7 +8,12 @@
       Name: <%= request.space.name %></br>
       From: <%= request.date_from %></br>
       To: <%= request.date_to %></br>
-      Total cost: <%= (request.space.price) * (((request.date_from..request.date_to).to_a).length - 1)%>
+      Total cost: <%= (request.space.price) * (((request.date_from..request.date_to).to_a).length - 1)%></br>
+      <% if request.confirmed %>
+        Your request has been confirmed!</br>
+      <% else %>
+        Your request is awaiting confirmation.</br>
+      <% end %>
     </li>
   <% end %>
   </ul>
@@ -24,9 +29,12 @@
            <%= request.date_from %></br>
            <%= request.date_to %></br>
            Total earnings: <%= (request.space.price) * (((request.date_from..request.date_to).to_a).length - 1)%>
+           <% if !request.confirmed %>
            <form method="post" action="/requests/confirm/<%=request.id%>">
            <input type="submit" value="Confirm request" name="confirm_request">
            </form>
+           <% else %>
+           Booking confirmed!
          </li>
      <% end %>
    </ul>
